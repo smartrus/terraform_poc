@@ -11,3 +11,14 @@ provider "hcloud" {
 resource "hcloud_server" "web" {
   # ...
 }
+
+resource "hcloud_server" "node1" {
+  name = "node1"
+  image = "ubuntu-16.04"
+  server_type = "cx11"
+}
+
+resource "hcloud_floating_ip" "master" {
+  type = "ipv4"
+  server_id = "${hcloud_server.node1.id}"
+}
