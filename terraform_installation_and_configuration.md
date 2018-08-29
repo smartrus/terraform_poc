@@ -10,3 +10,12 @@ export PATH=$PATH:/bin/terraform
 
 terraform --version
 ```
+
+Running Terraform in Docker
+https://hub.docker.com/r/hashicorp/terraform/
+
+```
+docker run -i -t hashicorp/terraform:light plan main.tf
+
+docker run -i -t hashicorp/terraform:full plan main.tf
+```
