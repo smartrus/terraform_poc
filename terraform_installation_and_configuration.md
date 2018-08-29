@@ -45,10 +45,21 @@ sudo apt-get install docker-ce
 sudo docker run hello-world
 ```
 
-Running Terraform
+Setting variables
 
 ```
-docker run -i -t hashicorp/terraform:light plan main.tf
+vi terraform.tfvars
+```
 
-docker run -i -t hashicorp/terraform:full plan main.tf
+Running Terraform https://github.com/LeapBeyond/terraform-tutorials/wiki/Hands-on-3:-Terraform-syntax
+
+```
+# Initialize terraform in the project directory
+> docker run -it --rm -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init
+# validate your files in the app subdirectory
+> docker run -it --rm -v $(pwd):/app/ -w /app/ hashicorp/terraform:light validate /app
+# plan the changes needed, requiring your secret key ...
+> docker run -it --rm -v $(pwd):/app/ -w /app/ -v $HOME/.aws:/app/.aws hashicorp/terraform:light plan /app
+# Then apply!
+> docker run -it --rm -v $(pwd):/app/ -w /app/ -v $HOME/.aws:/app/.aws hashicorp/terraform:light apply /app
 ```
