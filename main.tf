@@ -7,11 +7,6 @@ provider "hcloud" {
   token = "${var.hcloud_token}"
 }
 
-# Create a server
-resource "hcloud_server" "web" {
-  # ...
-}
-
 resource "hcloud_server" "node1" {
   name = "node1"
   image = "ubuntu-16.04"
